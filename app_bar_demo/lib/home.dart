@@ -14,7 +14,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         backgroundColor: Colors.black,//background
         title: Text('Home'),
-        centerTitle: false,
+        centerTitle: true,
         elevation: 5.0,//Shadow
         leading: Padding(padding: const EdgeInsets.all(8.0),
                     child: Icon(Icons.account_box),
