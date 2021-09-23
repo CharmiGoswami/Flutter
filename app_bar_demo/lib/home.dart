@@ -23,6 +23,9 @@ class _HomeState extends State<Home> {
                   padding: const EdgeInsets.all(8.0),
                   child: Icon(Icons.menu),
           )],
+          leadingWidth: 2,//width of leading
+          shadowColor: Colors.red,
+          foregroundColor: Colors.blueGrey,
           titleSpacing: 1,
 
       ),
