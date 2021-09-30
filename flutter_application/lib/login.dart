@@ -9,11 +9,44 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  late FocusNode myFocusNode;
+  @override
+  void initState() {
+    super.initState();
+    myFocusNode = FocusNode();
+  }
+
+  void dispose() {
+    myFocusNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.blueGrey,
-      body: Column(
+      body: myBody(
+        myFocusNode: myFocusNode,
+      ),
+    );
+  }
+}
+
+class myBody extends StatelessWidget {
+  const myBody({
+    Key? key,
+    required this.myFocusNode,
+  }) : super(key: key);
+
+  final FocusNode myFocusNode;
+
+  @override
+  Widget build(BuildContext context) {
+    var _formKey = GlobalKey<FormState>();
+    return Form(
+      key: _formKey,
+      child: Column(
         children: [
           Row(
             children: [
@@ -97,14 +130,27 @@ class _LoginState extends State<Login> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 14, 20, 0),
                 child: TextFormField(
+                    style: TextStyle(
+                        fontStyle: FontStyle.normal,
+                        fontSize: 18,
+                        color: Colors.white),
+                    keyboardType: TextInputType.name,
+                    validator: (text) {
+                      if (text == null) {
+                        return null;
+                      }
+                      return "Username cannot empty";
+                    },
+                    //autofocus: true,
+                    focusNode: myFocusNode,
                     decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.black54,
-                  hintText: 'Username',
-                  hintStyle: TextStyle(color: Colors.grey, fontSize: 18),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(19)),
-                )),
+                      filled: true,
+                      fillColor: Colors.black54,
+                      hintText: 'Username',
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 18),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(19)),
+                    )),
               ),
             ],
           ),
@@ -112,8 +158,19 @@ class _LoginState extends State<Login> {
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 14, 20, 0),
-                child: TextFormField(
+                child: new TextFormField(
                     obscureText: true,
+                    validator: (text) {
+                      if (text == null) {
+                        return null;
+                      }
+                      return "Password cannot empty";
+                    },
+                    style: TextStyle(
+                        fontStyle: FontStyle.normal,
+                        fontSize: 18,
+                        color: Colors.white),
+                    keyboardType: TextInputType.text,
                     obscuringCharacter: '*',
                     decoration: InputDecoration(
                       filled: true,
@@ -167,7 +224,9 @@ class _LoginState extends State<Login> {
                   minWidth: 340,
                   shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(12)),
-                  onPressed: () {},
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {}
+                  },
                   child: Text(
                     "Login",
                     style: TextStyle(
@@ -185,7 +244,7 @@ class _LoginState extends State<Login> {
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(105, 90, 2, 0),
+                    padding: const EdgeInsets.fromLTRB(105, 80, 2, 0),
                     child: Text(
                       'New at Trsto ?',
                       style: TextStyle(
@@ -195,7 +254,7 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 90, 2, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 80, 2, 0),
                     child: Text(
                       'Register',
                       style: TextStyle(
