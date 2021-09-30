@@ -14,7 +14,7 @@ class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurple,
+      backgroundColor: Colors.pink[100],
       body: Container(
         child: Column(
           children: [

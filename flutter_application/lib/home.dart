@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
         child: Column(
           children: [
             Container(
-              height: 200,
+              height: 100,
               width: MediaQuery.of(context).size.width,
               color: Colors.white38,
             ),
@@ -248,9 +248,9 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 76,
-                      )
+                      // SizedBox(
+                      //   height: 76,
+                      // )
                     ],
                   )
                 ],
