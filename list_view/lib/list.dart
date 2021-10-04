@@ -12,7 +12,7 @@ class MyList extends StatefulWidget {
 
 class _MyListState extends State<MyList> {
   bool checkBoxValue = false;
-  List_class list_class = new List_class();
+  List<List_class> listclass = listModelData();
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,10 @@ class _MyListState extends State<MyList> {
           elevation: 14,
         ),
         body: ListView.builder(
-          itemBuilder: (Listviewcontext, index) => ListTile(
-            title: Text(list_class.color_name.toString()),
+          //length of list
+          itemCount: listclass.length,
+          itemBuilder: (context, index) => ListTile(
+            title: Text("${listclass[index].color_name}"),
             onTap: () {},
             trailing: Checkbox(
                 autofocus: false,
@@ -40,3 +42,4 @@ class _MyListState extends State<MyList> {
         ));
   }
 }
+
