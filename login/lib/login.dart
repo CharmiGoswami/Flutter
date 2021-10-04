@@ -14,17 +14,21 @@ class _LoginState extends State<Login> {
     return Scaffold(
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            // child: Image.network(
-            //   'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.kindpng.com%2Fimgv%2FobRJJT_user-profile-avatar-login-account-male-user-icon%2F&psig=AOvVaw3henmzg8sRY2gDZ6JTZDMF&ust=1633150230138000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCIjmuOy0qPMCFQAAAAAdAAAAABAD',
-            //   height: 400,
-            //   width: 100,
-            // )
-            child: Placeholder(
-              color: Colors.red,
+          Flexible(
+              child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Image.network(
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2jYNITMyHacs50k8ZP0VBSL5DylJW1DAtbA&usqp=CAU',
+                    height: 500,
+                    width: MediaQuery.of(context).size.width,
+                    fit: BoxFit.cover,
+                  )
+                  // child: Placeholder(
+                  //   fallbackHeight: 700,
+                  //   color: Colors.red,
+                  // ),
+                  ),
             ),
-          ),
           Container(
             child: TextField(
               keyboardType: TextInputType.name,
