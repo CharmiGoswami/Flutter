@@ -13,33 +13,33 @@ class MyList extends StatefulWidget {
 class _MyListState extends State<MyList> {
   bool checkBoxValue = false;
   List<List_class> listclass = listModelData();
+  List userChecked = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('List'),
-          backgroundColor: Colors.blueGrey,
-          elevation: 14,
-        ),
-        body: ListView.builder(
-          //length of list
+      appBar: AppBar(
+        title: Text('List'),
+        backgroundColor: Colors.blueGrey,
+        elevation: 14,
+      ),
+      body: ListView.builder(
           itemCount: listclass.length,
-          itemBuilder: (context, index) => ListTile(
-            title: Text("${listclass[index].color_name}"),
-            onTap: () {},
-            trailing: Checkbox(
-                autofocus: false,
-                activeColor: Colors.blueGrey,
-                checkColor: Colors.white,
-                value: checkBoxValue,
-                onChanged: (bool? newValue) {
-                  setState(() {
-                    checkBoxValue = newValue!;
-                  });
-                }),
-          ),
-        ));
+          itemBuilder: (context, index) {
+            var listname = listclass[index].color_name;
+            return CheckboxListTile(
+              selected: false,
+              title: Text('${listclass[index].color_name}'),
+              value: checkBoxValue,
+              onChanged: (value) {
+                setState(() {
+                  checkBoxValue = value!;
+                });
+                controlAffinity:
+                ListTileControlAffinity.leading;
+              },
+            );
+          }),
+    );
   }
 }
-
