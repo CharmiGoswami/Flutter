@@ -1,6 +1,6 @@
 # list_view
 
-A new Flutter project.
+Use Model class
 
 ## Getting Started
 
