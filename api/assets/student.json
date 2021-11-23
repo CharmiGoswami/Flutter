@@ -1,0 +1,9 @@
+{
+    "id" : "1025",
+    "name" : "Charmi",
+    "score" : "8.99",
+    "hobbies" : ["Drawing","Music","Reading"],
+
+    "physic":{"height" : 5, "weight" : 50} 
+ 
+}
