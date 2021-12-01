@@ -1,0 +1,58 @@
+[
+    {   
+       
+        "name":"Silvia Willms",
+        "profile":"assets/images/image/girl_image.jpeg",
+        "message":"",
+        "verification":"assets/images/Exclude.png",
+        "status":"followed you"
+    },
+    {   
+    
+        "name":"Roosevelt Schmeler",
+        "profile":"assets/images/image/boy_image.jpeg",
+        "verification":"assets/images/Exclude.jpeg",
+        "message":"",
+        "status":"Sent a circle request"
+    },
+    {   
+        
+        "name":"Coine Recieved",
+        "status":"received",
+        "message":"10 Trsto coin",
+        "verification":"",
+        "profile":"assets/images/IconV3@3x.png"
+    },
+    {   
+       
+        "name":"Score increased",
+        "status":"increased",
+        "verification":"",
+        "message":"120 μ score",
+        "profile":"assets/images/μ.png"
+    },
+    {   
+        
+        "name":"new vibes",
+        "verification":"",
+        "status":"Posted",
+        "message":"99+ New Vibes",
+        "profile":"assets/images/Lightning.png"
+    },
+    {   
+      
+        "name":"13 New people",
+        "message":"added in your circle",
+        "verification":"",
+        "status":"",
+        "profile":"assets/images/IconV3@3x.png"
+    },
+    {   
+        
+        "name":"Roosevelt Schmeler",
+        "status":"Sent a circle request",
+        "message":"",
+        "verification":"assets/images/Exclude.png",
+        "profile":"assets/images/image/boy_image.jpeg"
+    }
+]

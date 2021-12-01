@@ -1,0 +1,34 @@
+[
+    {
+        "que":"What the age of this person ?",
+        "btn1":"Below 18",
+        "btn2":"18-25",
+        "btn3":"25-35",
+        "btn4":"35+",
+        "btn5":"Not sure"
+    },
+    {
+        "que":"What their plans for weekend ?",
+        "btn1":"Outing",
+        "btn2":"Road trip",
+        "btn3":"Reading",
+        "btn4":"Music party",
+        "btn5":"Not sure"
+    },
+    {
+        "que":"What the age of this person ?",
+        "btn1":"Below 18",
+        "btn2":"18-25",
+        "btn3":"25-35",
+        "btn4":"35+",
+        "btn5":"Not sure"
+    },
+    {
+        "que":"What their plans for weekend ?",
+        "btn1":"Outing",
+        "btn2":"Road trip",
+        "btn3":"Reading",
+        "btn4":"Music party",
+        "btn5":"Not sure"
+    }
+]

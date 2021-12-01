@@ -1,0 +1,62 @@
+[
+    {
+        "coins":1234,
+        "name": "Ella Harris",
+        "profile": "https://cdn.fakercloud.com/avatars/souuf_128.jpg",
+        "id": "#1"
+    },
+    {
+        "coins":1134,
+        "name": "Rosie Muller",
+        "profile": "https://cdn.fakercloud.com/avatars/iamjdeleon_128.jpg",
+        "id": "#2"
+    },
+    {
+        "coins":893,
+        "name": "Rudolph Nikolaus",
+        "profile": "https://cdn.fakercloud.com/avatars/silvanmuhlemann_128.jpg",
+        "id": "#3"
+    },
+    {
+        "coins":800,
+        "name": "Yolanda O'Conner",
+        "profile": "https://cdn.fakercloud.com/avatars/stephcoue_128.jpg",
+        "id": "#4"
+    },
+    {
+        "coins":790,
+        "name": "Randy D'Amore",
+        "profile": "https://cdn.fakercloud.com/avatars/balakayuriy_128.jpg",
+        "id": "#5"
+    },
+    {
+        "coins":789,
+        "name": "Ms. Dora King",
+        "profile": "https://cdn.fakercloud.com/avatars/leonfedotov_128.jpg",
+        "id": "#6"
+    },
+    {
+        "coins":730,
+        "name": "Angel Ziemann",
+        "profile": "https://cdn.fakercloud.com/avatars/d33pthought_128.jpg",
+        "id": "#7"
+    },
+    {
+        "coins":700,
+        "name": "Kelvin Vandervort",
+        "profile": "https://cdn.fakercloud.com/avatars/eugeneeweb_128.jpg",
+         "id": "#8"
+    },
+    {
+        "coins":698,
+        "name": "Dr. Geoffrey Stehr",
+        "profile": "https://cdn.fakercloud.com/avatars/imcoding_128.jpg",
+        "id": "#9"
+    },
+    {
+        "coins":690,
+        "name": "Loren Streich",
+        "profile": "https://cdn.fakercloud.com/avatars/prrstn_128.jpg",
+        "id": "#10"
+    }
+]
