@@ -44,6 +44,9 @@ dependencies:
   #https://pub.dev/packages/flutter_svg
   flutter_svg: ^1.0.3
 
+  #https://pub.dev/packages/numeric_keyboard
+  numeric_keyboard: ^1.1.0
+
   
 
 dev_dependencies:

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:game_zone/constant/image_constant.dart';
+import 'package:game_zone/screens/addition.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class _HomeState extends State<Home> {
       body: SingleChildScrollView(
         child: AnimationLimiter(
           child: Padding(
-            padding: const EdgeInsets.only(top: 30, right: 20, left: 20),
+            padding: const EdgeInsets.only(top: 70, right: 20, left: 20),
             child: Column(
               children: AnimationConfiguration.toStaggeredList(
                   duration: const Duration(milliseconds: 375),
@@ -28,13 +29,23 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                   children: [
+                    // IconButton(
+                    //   icon: SvgPicture.asset(plus),
+                    //   onPressed: () {  },
+                    //   ),
                     IconButton(
-                      icon: SvgPicture.asset(plus), 
-                      onPressed: () {  },
-                      ),
-                      
-                    ]
-              ),   
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Addition()));
+                        },
+                        icon: Icon(
+                          Icons.add,
+                          color: Colors.black,
+                          size: 20,
+                        ))
+                  ]),
             ),
           ),
         ),
