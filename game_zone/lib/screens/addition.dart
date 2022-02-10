@@ -21,6 +21,8 @@ class _AdditionState extends State<Addition> {
   late int no1, no2, sum;
   String text = '';
   bool hasScaffoldColor = false;
+  var top = FractionalOffset.topCenter;
+  var bottom = FractionalOffset.bottomCenter;
 
   @override
   void initState() {
@@ -74,7 +76,7 @@ class _AdditionState extends State<Addition> {
           Padding(
             padding:
                 const EdgeInsets.only(top: 10, left: 20, right: 30, bottom: 10),
-            child: hasScaffoldColor == true
+            child: hasScaffoldColor == false
                 ? ScaleAnimatedWidget.tween(
                     duration: Duration(milliseconds: 600),
                     scaleDisabled: 0.5,
