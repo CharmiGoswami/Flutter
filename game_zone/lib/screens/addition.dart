@@ -1,5 +1,8 @@
 import 'dart:math';
 
+import 'package:animated_widgets/widgets/rotation_animated.dart';
+import 'package:animated_widgets/widgets/scale_animated.dart';
+import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:math';
 
@@ -17,6 +20,7 @@ class _AdditionState extends State<Addition> {
   Random random = new Random();
   late int no1, no2, sum;
   String text = '';
+  bool hasScaffoldColor = false;
 
   @override
   void initState() {
@@ -24,6 +28,12 @@ class _AdditionState extends State<Addition> {
     super.initState();
     no1 = random.nextInt(10000);
     no2 = random.nextInt(10000);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -64,7 +74,37 @@ class _AdditionState extends State<Addition> {
           Padding(
             padding:
                 const EdgeInsets.only(top: 10, left: 20, right: 30, bottom: 10),
-            child: Text(text),
+            child: hasScaffoldColor == true
+                ? ScaleAnimatedWidget.tween(
+                    duration: Duration(milliseconds: 600),
+                    scaleDisabled: 0.5,
+                    scaleEnabled: 1,
+                    //your widget
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      child: Center(child: Text(text)),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(7),
+                        color: Color(Random().nextInt(0xffffffff))
+                            .withOpacity(0.5),
+                      ),
+                    ),
+                  )
+                : ShakeAnimatedWidget(
+                    duration: Duration(milliseconds: 1500),
+                    shakeAngle: Rotation.deg(z: 40),
+                    curve: Curves.linear,
+                    child: Container(
+                      height: 80,
+                      width: 80,
+                      child: Center(child: Text(text)),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Color(Random().nextInt(0xffffffff))
+                            .withOpacity(0.5),
+                      ),
+                    )),
           ),
           NumericKeyboard(
             onKeyboardTap: _onKeyboardTap,
@@ -80,24 +120,17 @@ class _AdditionState extends State<Addition> {
             ),
             leftButtonFn: () {
               print('${no1 + no2}');
+              //setState(() {
+              sum = no1 + no2;
               setState(() {
-                sum = no1 + no2;
-                //if (text == no1 + no2) {
-                AlertDialog(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15))),
-                  title: Text('Right'),
-                  content: Container(),
-                );
-                // } else {
-                //   AlertDialog(
-                //     shape: RoundedRectangleBorder(
-                //         borderRadius: BorderRadius.all(Radius.circular(15))),
-                //     title: Text('Opps! Wrong Answer'),
-                //     content: Container(),
-                //   );
-                // }
+                if (sum.toString() == text.toString()) {
+                  hasScaffoldColor = true;
+                } else {
+                  hasScaffoldColor = false;
+                }
               });
+
+              print(hasScaffoldColor);
             },
             leftIcon: Icon(
               Icons.check,

@@ -47,6 +47,9 @@ dependencies:
   #https://pub.dev/packages/numeric_keyboard
   numeric_keyboard: ^1.1.0
 
+  #https://pub.dev/packages/animated_widgets
+  animated_widgets: ^1.1.0
+
   
 
 dev_dependencies:
