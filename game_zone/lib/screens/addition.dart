@@ -93,20 +93,22 @@ class _AdditionState extends State<Addition> {
                       ),
                     ),
                   )
-                : ShakeAnimatedWidget(
-                    duration: Duration(milliseconds: 1500),
-                    shakeAngle: Rotation.deg(z: 40),
-                    curve: Curves.linear,
+                : ScaleAnimatedWidget.tween(
+                    duration: Duration(milliseconds: 600),
+                    scaleDisabled: 0.5,
+                    scaleEnabled: 1,
+                    //your widget
                     child: Container(
-                      height: 80,
-                      width: 80,
+                      height: 200,
+                      width: 200,
                       child: Center(child: Text(text)),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(7),
                         color: Color(Random().nextInt(0xffffffff))
                             .withOpacity(0.5),
                       ),
-                    )),
+                    ),
+                  ),
           ),
           NumericKeyboard(
             onKeyboardTap: _onKeyboardTap,
