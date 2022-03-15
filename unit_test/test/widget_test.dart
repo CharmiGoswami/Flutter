@@ -28,9 +28,9 @@ void main() {
     expect(find.text('4'), findsOneWidget);
   });
 
-  // test("First test", () {
-  //   int expectHour = 4;
+  test("First test", () {
+    int expectHour = 4;
 
-  //   expect(expectHour, 4);
-  // });
+    expect(expectHour, 4);
+  });
 }
