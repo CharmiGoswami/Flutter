@@ -48,11 +48,21 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      appBar: CustomAppBar(
-        leadingWidget: IconButton(
-          icon: Icon(Icons.arrow_back),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back,color: Colors.black,),
           onPressed: () => Get.back(),
         ),
+        centerTitle: true,
+        title: Text(
+                        "Add Task",
+                        style: TextStyle(
+                            color: Get.isDarkMode ? Colors.white : darkGreyClr,
+                            fontSize: 23,
+                            fontWeight: FontWeight.bold),
+                      ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -62,19 +72,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               key: _formKey,
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Add Task",
-                        style: TextStyle(
-                            color: Get.isDarkMode ? Colors.white : darkGreyClr,
-                            fontSize: 23,
-                            fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
+                 const SizedBox(
                     height: 25,
                   ),
                   InputField(
@@ -232,21 +230,24 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       //_colorPallete(),
-                      ButtonWidget(
-                          label: 'Add Task',
-                          onTap: () async {
-                            _submitOthers();
-                            _submitDate();
-                            _submitStartTime();
-                            _submitEndTime();
-                            if (_formKey.currentState!.validate()) {
-                              final Task task = Task();
-                              _addTaskToDB(task);
-                              await _taskController.addTask(task);
-                              Get.back();
-                            }
-                          },
-                          color: primaryClr)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 40),
+                        child: ButtonWidget(
+                            label: 'Add Task',
+                            onTap: () async {
+                              _submitOthers();
+                              _submitDate();
+                              _submitStartTime();
+                              _submitEndTime();
+                              if (_formKey.currentState!.validate()) {
+                                final Task task = Task();
+                                _addTaskToDB(task);
+                                await _taskController.addTask(task);
+                                Get.back();
+                              }
+                            },
+                            color: primaryClr),
+                      )
                     ],
                   )
                 ],

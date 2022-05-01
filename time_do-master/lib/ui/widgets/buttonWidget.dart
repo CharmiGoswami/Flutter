@@ -15,7 +15,7 @@ class ButtonWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 90,
+        width: MediaQuery.of(context).size.width - 40,
         height: 50,
         alignment: Alignment.center,
         child: Text(label,style: TextStyle(color: Colors.white,fontSize: 15),),

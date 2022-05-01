@@ -47,48 +47,67 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      appBar: CustomAppBar(
-        leadingWidget: IconButton(onPressed: (){
-           notifyHelper.cancelAllNotification();
-          _taskController.deleteAllTasks();
-        }, icon: Icon(Icons.delete),),
+      // appBar: CustomAppBar(
+      //   leadingWidget: IconButton(onPressed: (){
+      //      notifyHelper.cancelAllNotification();
+      //     _taskController.deleteAllTasks();
+      //   }, icon: Icon(Icons.delete),),
+      // ),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Row(
+          children: [Text(
+                      'Today: ',
+                      style: Themes().homeScreenHeadingTextStyle,
+                    ),
+            Text(
+                          '${DateFormat.yMMMMd().format(DateTime.now())}',
+                          style: Themes().homeScreenSubHeadingTextStyle,
+                        ),
+          ],
+        ),
+        actions:[IconButton(icon:Icon(Icons.add),
+          color: Colors.black,onPressed: () => Get.to(() => AddTaskScreen(),
+            transition: Transition.downToUp,
+            duration: Duration(milliseconds: 500)),)]
       ),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '${DateFormat.yMMMMd().format(DateTime.now())}',
-                      style: Themes().homeScreenSubHeadingTextStyle,
-                    ),
-                    Text(
-                      'Today',
-                      style: Themes().homeScreenHeadingTextStyle,
-                    ),
-                  ],
-                )
-              ],
-            ),
+            // Row(
+            //   children: [
+            //     Column(
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: [
+            //         Text(
+            //           '${DateFormat.yMMMMd().format(DateTime.now())}',
+            //           style: Themes().homeScreenSubHeadingTextStyle,
+            //         ),
+            //         // Text(
+            //         //   'Today',
+            //         //   style: Themes().homeScreenHeadingTextStyle,
+            //         // ),
+            //       ],
+            //     )
+            //   ],
+            // ),
             _dateBar(),
             _tasks(),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: primaryClr,
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
-        onPressed: () => Get.to(() => AddTaskScreen(),
-            transition: Transition.downToUp,
-            duration: Duration(milliseconds: 500)),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: primaryClr,
+      //   child: Icon(
+      //     Icons.add,
+      //     color: Colors.white,
+      //   ),
+      //   onPressed: () => Get.to(() => AddTaskScreen(),
+      //       transition: Transition.downToUp,
+      //       duration: Duration(milliseconds: 500)),
+      // ),
     );
   }
 
@@ -111,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
             TextStyle(color: Get.isDarkMode ? Colors.white : darkGreyClr),
         dateTextStyle: TextStyle(
             color: Get.isDarkMode ? Colors.white : darkGreyClr,
-            fontSize: 20,
+            fontSize: 23,
             fontWeight: FontWeight.bold),
         monthTextStyle:
             TextStyle(color: Get.isDarkMode ? Colors.white : darkGreyClr),
@@ -126,13 +145,10 @@ class _HomeScreenState extends State<HomeScreen> {
       } else {
         return AnimationLimiter(
           child: ListView.builder(
-              scrollDirection:
-                  MediaQuery.of(context).orientation == Orientation.portrait
-                      ? Axis.vertical
-                      : Axis.horizontal,
               itemCount: _taskController.taskList.length,
               itemBuilder: (BuildContext context, int index) {
                 Task task = _taskController.taskList[index];
+                final item= _taskController.taskList[index].toString();
                 var date = DateFormat.jm().parse(task.startTime!);
                 var myTime = DateFormat('HH:mm').format(date);
                 handlingReminder(task.remind!, myTime, task);
@@ -146,8 +162,34 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: SlideAnimation(
                       horizontalOffset: 400.0,
                       child: FadeInAnimation(
-                        child: GestureDetector(
-                          onTap: () => displayBottomSheet(context, task),
+                        child: Dismissible(
+                          key: UniqueKey(),
+                          direction: DismissDirection.endToStart,
+                           onDismissed: (direction) {
+                          // Remove the item from the data source.
+                          setState(() {
+                             _taskController.deleteTask(task.id);
+                              notifyHelper.cancelNotification(task.id!);
+                              //Get.back();
+                              
+                             _taskController.taskList.removeAt(index);
+                          });
+                           },
+                          background: Container(
+                             height: MediaQuery.of(context).orientation == Orientation.portrait ?  MediaQuery.of(context).size.height *0.2:200,
+                              width: MediaQuery.of(context).orientation == Orientation.portrait ?  MediaQuery.of(context).size.width :MediaQuery.of(context).size.width *0.7,
+                              margin: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                              padding: EdgeInsets.symmetric(horizontal: 10,vertical: MediaQuery.of(context).orientation == Orientation.portrait ? 20 : 0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.red,
+                            ),
+                            
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: Icon(Icons.delete, color: Colors.white,size: 35,),
+                            ),alignment: Alignment.centerRight,
+                            ),
                           child: TaskTile(task: task),
                         ),
                       ),
@@ -181,24 +223,35 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           task.isCompleted == 0
-              ? ElevatedButton(
-                  onPressed: () {
-                    notifyHelper.cancelNotification(task.id!);
-                    _taskController.markAsCompleted(task.id);
-                    Get.back();
-                  },
-                  child: Text("Complete Task"))
+              ? Container(
+                width: MediaQuery.of(context).size.width-40,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                primary: Colors.purple
+              ),
+                    onPressed: () {
+                      notifyHelper.cancelNotification(task.id!);
+                      _taskController.markAsCompleted(task.id);
+                      Get.back();
+                    },
+                    child: Text("Complete Task")),
+              )
               : SizedBox(
                   height: 0,
                 ),
-          ElevatedButton(
-              onPressed: () {
-                _taskController.deleteTask(task.id);
-                notifyHelper.cancelNotification(task.id!);
-                Get.back();
-              },
-              child: Text("Delete Task")),
-          ElevatedButton(onPressed: () => Get.back(), child: Text("Cancel"))
+          Container(
+            width: MediaQuery.of(context).size.width-40,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.red
+              ),
+                onPressed: () {
+                  _taskController.deleteTask(task.id);
+                  notifyHelper.cancelNotification(task.id!);
+                  Get.back();
+                },
+                child: Text("Delete Task")),
+          ),
         ],
       ),
     );
